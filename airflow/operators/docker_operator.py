@@ -14,12 +14,17 @@
 
 import json
 import logging
+import ast
 from airflow.exceptions import AirflowException
 from airflow.models import BaseOperator
 from airflow.utils.decorators import apply_defaults
 from airflow.utils.file import TemporaryDirectory
-from docker import APIClient, tls
-import ast
+from docker import tls
+try:
+    from docker import APIClient
+except ImportError:
+    # prior to version 2.0.0 of the module docker, the API client was called Client
+    from docker import Client as APIClient
 
 
 class DockerOperator(BaseOperator):
