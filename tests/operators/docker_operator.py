@@ -21,7 +21,7 @@ try:
 except ImportError:
     pass
 
-from airflow.exceptions import AirflowExceptihttps://github.com/wasperen/incubator-airflow.giton
+from airflow.exceptions import AirflowException
 
 try:
     from unittest import mock
