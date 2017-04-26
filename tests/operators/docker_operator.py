@@ -17,9 +17,14 @@ import logging
 
 try:
     from airflow.operators.docker_operator import DockerOperator
-    from docker.client import APIClient
 except ImportError:
     pass
+
+try:
+    from docker import APIClient
+except ImportError:
+    # prior to version 2.0.0 of the module docker, the API client was called Client
+    from docker import Client as APIClient
 
 from airflow.exceptions import AirflowException
 
